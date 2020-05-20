@@ -63,7 +63,7 @@ describe('#City') do
       city2 = City.new({:name => "Seattle", :id => nil})
       city2.save()
       city1.delete()
-      expect(City.all).to(eq[city2])
+      expect(City.all).to(eq([city2]))
     end
   end
 

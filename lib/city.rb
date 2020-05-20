@@ -40,15 +40,15 @@ class City
   end
 
   def update(attributes)
-    # if (attributes.has_key?(:name)) && (attributes.fetch("name") !=nil)
-    #   @name = attributes.fetch(:name)
-    #   DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
+    if (attributes.has_key?(:name)) && (attributes.fetch(:name) !=nil)
+      @name = attributes.fetch(:name)
+      DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
       # add elseif statement if using the method to update other attributes
     end
   end
 
   def delete
-    # DB.exec("DELETE FROM cities WHERE id = #{@id};")
+    DB.exec("DELETE FROM cities WHERE id = #{@id};")
   end
 
 end
