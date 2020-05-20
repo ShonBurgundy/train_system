@@ -29,14 +29,14 @@ class City
   end
 
   def self.clear
-    # DB.exec("DELETE FROM cities *;")
+    DB.exec("DELETE FROM cities *;")
   end
 
   def self.find(id)
-    # city = DB.exec("SELECT * FROM cities WHERE id = #{id};").first
-    # @name = city.fetch("name")
-    # @id = city.fetch("id")
-    # City.new({:name => @name, :id => @id})
+    city = DB.exec("SELECT * FROM cities WHERE id = #{id};").first
+    @name = city.fetch("name")
+    @id = city.fetch("id")
+    City.new({:name => @name, :id => @id})
   end
 
   # def update(attributes)
