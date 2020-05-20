@@ -60,9 +60,11 @@ describe '#Train' do
   describe('#delete') do
     it("deletes a train") do
       train = Train.new({:name => "A", :id => nil})
-      train.save
+      train.save()
+      train2 = Train.new({:name => "B", :id => nil})
+      train2.save()
       train.delete
-      expect(Train.find(train.id)).to(eq(nil))
+      expect(Train.all).to(eq([train2]))
     end
   end
     
