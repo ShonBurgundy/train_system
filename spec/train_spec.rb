@@ -38,4 +38,13 @@ describe '#Train' do
     end
   end
 
+  describe('.find') do
+    it("finds a train by id") do
+      train1 = Train.new({:name => "A", :id => nil})
+      train1.save
+      train2 = Train.new({:name => "B", :id => nil})
+      train2.save
+      expect(Train.find(train1.id)).to(eq(train1))
+    end
+  end
 end
