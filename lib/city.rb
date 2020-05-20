@@ -9,31 +9,38 @@ class City
   end
 
   def self.all
-
+    returned_cities = DB.exec("SELECT * FROM cities;")
+    cities = []
+    returned_cities.each() do |city|
+      name = city.fetch("name")
+      id = city.fetch("id").to_i
+      cities.push(City.new({:name => name, :id => id}))
+    end
+    cities
   end
 
   def save
-
+    result = 
   end
 
   def ==(city_to_compare)
-
+    
   end
 
-  def self.clear
+  # def self.clear
 
-  end
+  # end
 
-  def self.find(id)
+  # def self.find(id)
 
-  end
+  # end
 
-  def update(attributes)
+  # def update(attributes)
 
-  end
+  # end
 
-  def delete
+  # def delete
 
-  end
+  # end
 
 end
