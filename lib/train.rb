@@ -39,9 +39,9 @@ class Train
     Train.new({:name => @name, :id => @id})
   end
 
-  # def update(name)
+  def update(name)
 
-  # end
+  end
 
   # def delete
 

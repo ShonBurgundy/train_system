@@ -47,4 +47,16 @@ describe '#Train' do
       expect(Train.find(train1.id)).to(eq(train1))
     end
   end
+
+  describe('#update') do
+    it("updates a train by id") do
+      train1 = Train.new({:name => "A", :id => nil})
+      train1.save()
+      train1.update("C")
+      expect(train.name).to(eq("C"))
+    end
+  end
+    
+
+
 end
