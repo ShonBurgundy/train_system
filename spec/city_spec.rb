@@ -14,7 +14,7 @@ describe('#City') do
       city1.save
       city2 = City.new({:name => "Seattle", :id => nil})
       city2.save
-      expect(Train.all).to(eq([city1, city2]))
+      expect(City.all).to(eq([city1, city2]))
     end
   end
 

@@ -20,11 +20,12 @@ class City
   end
 
   def save
-    result = 
+    result = DB.exec("INSERT INTO cities (name) VALUES ('#{@name}') RETURNING id;")
+    @id = result.first().fetch("id").to_i
   end
 
   def ==(city_to_compare)
-    
+    @name == city_to_compare.name()
   end
 
   # def self.clear
