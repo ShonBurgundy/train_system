@@ -11,9 +11,9 @@ describe('#City') do
   describe('#save') do
     it('saves a city') do
       city1 = City.new({:name => "Portland", :id => nil})
-      city1.save
+      city1.save()
       city2 = City.new({:name => "Seattle", :id => nil})
-      city2.save
+      city2.save()
       expect(City.all).to(eq([city1, city2]))
     end
   end
@@ -26,6 +26,26 @@ describe('#City') do
     end
   end
 
+  describe('.clear') do
+    it("clears all cities") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      City.clear()
+      expect(City.all).to(eq([]))
+    end
+  end
+
+  describe('.find') do
+    it("finds a city by id") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      expect(City.find(city1.id)).to(eq(city1))
+    end
+  end
   
 
 end
