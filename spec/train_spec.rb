@@ -52,8 +52,17 @@ describe '#Train' do
     it("updates a train by id") do
       train1 = Train.new({:name => "A", :id => nil})
       train1.save()
-      train1.update("C")
-      expect(train.name).to(eq("C"))
+      train1.update({:name => "C"})
+      expect(train1.name).to(eq("C"))
+    end
+  end
+
+  describe('#delete') do
+    it("deletes a train") do
+      train = Train.new({:name => "A", :id => nil})
+      train.save
+      train.delete
+      expect(Train.find(train.id)).to(eq(nil))
     end
   end
     
