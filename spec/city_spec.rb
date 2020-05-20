@@ -46,6 +46,26 @@ describe('#City') do
       expect(City.find(city1.id)).to(eq(city1))
     end
   end
-  
+
+  describe('#update') do
+    it("updates a city name by id") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city1.update({:name => "PDX"})
+      expect(city1.name).to(eq("PDX"))
+    end
+  end
+
+  describe('#delete') do
+    it("deletes a city by id") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      city1.delete()
+      expect(City.all).to(eq[city2])
+    end
+  end
+
 
 end
