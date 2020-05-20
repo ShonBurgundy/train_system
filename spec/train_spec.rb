@@ -68,6 +68,4 @@ describe '#Train' do
     end
   end
     
-
-
 end
