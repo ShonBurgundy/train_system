@@ -28,9 +28,9 @@ class Train
     self.name() == train_to_compare.name()
   end
 
-  # def self.clear
+  def self.clear
 
-  # end
+  end
 
   # def self.find(id)
 
