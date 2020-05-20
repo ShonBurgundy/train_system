@@ -1,7 +1,7 @@
 class Train
 
   attr_reader :id
-  attr_accessor :name, :city
+  attr_accessor :name
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -25,16 +25,19 @@ class Train
   end
 
   def ==(train_to_compare)
-    self.name() == train_to_compare.name()
+    @name == train_to_compare.name()
   end
 
   def self.clear
     DB.exec("DELETE FROM trains *;")
   end
 
-  # def self.find(id)
-
-  # end
+  def self.find(id)
+    train = DB.exec("SELECT * FROM trains WHERE id = #{id};").first
+    @name = train.fetch("name")
+    @id = train.fetch("id").to_i
+    Train.new({:name => @name, :id => @id})
+  end
 
   # def update(name)
 
