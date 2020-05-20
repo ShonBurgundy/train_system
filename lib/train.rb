@@ -29,7 +29,7 @@ class Train
   end
 
   def self.clear
-
+    DB.exec("DELETE FROM trains *;")
   end
 
   # def self.find(id)
