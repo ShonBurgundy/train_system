@@ -6,7 +6,6 @@ class Train
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
-    @cities = []
   end
 
   def self.all
@@ -44,13 +43,33 @@ class Train
     if (attributes.has_key?(:name)) && (attributes.fetch(:name) != nil)
       @name = attributes.fetch(:name)
       DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
-    # elsif (attributes.has_key?(:name)) && (attributes.fetch(:name) != nil)
-    #   train_name = attributes.fetch(:name)
-    #   train = DB.exec("SELECT * FROM trains WHERE lower(name) = '#{name.downcase}';").first  
-    #   if train != nil
-    #     DB.exec("INSERT INTO stops(train_id, city_id) VALUES (#{train['id'].to_i}, #{@id});")
-    #   end
+    elsif (attributes.has_key?(:city_name)) && (attributes.fetch(:city_name) != nil)
+      city_name = attributes.fetch(:city_name)
+      city = DB.exec("SELECT * FROM cities WHERE lower(name) = '#{city_name.downcase}';").first  
+      if city != nil
+        DB.exec("INSERT INTO stops(train_id, city_id) VALUES (#{city['id'].to_i}, #{@id});")
+      end
     end
+  end
+
+  # def update_cities(city)
+  #   city_name = city
+  #   city = DB.exec("SELECT * FROM cities WHERE lower(name)='#{city_name.downcase}';").first
+  #   if city != nil
+  #     DB.exec("INSERT INTO stops (city_id, train_id) VALUES (#{city['id'].to_i}, #{@id});")
+  #   end
+  # end
+
+  def cities
+    cities = []
+    results = DB.exec("SELECT city_id FROM stops WHERE train_id = #{@id};")
+    results.each() do |result|
+      city_id = result.fetch("city_id").to_i()
+      city = DB.exec("SELECT * FROM cities WHERE id = #{city_id};")
+      name = city.first().fetch("name")
+      cities.push(City.new({:name => name, :id => city_id}))
+    end
+    cities
   end
 
   def delete

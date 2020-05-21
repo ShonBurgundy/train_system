@@ -1,0 +1,27 @@
+<h1> Welcome to the Train System Homepage</h1>
+
+<h3>Cities we service:</h3>
+  <% if @cities.any? %>
+    <ul>
+      <% @cities.each do |city| %>
+        <li><a href="/city/<%= city.id %>"><%= city.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Not Currently Serving any Cities</p>
+  <% end %>
+
+
+<h3>Trains:</h3>
+  <% if @trains.any? %>
+  <ul>
+    <% @trains.each do |train| %>
+      <li><a href="/train/<%= train.id %>"><%= train.name %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>No Trains Currently Operating</p>
+  <% end %>
+
+  <a href="/login">Log in as operator</a>
+  <br><a href="/edit">Edit Trains and Cities</a>

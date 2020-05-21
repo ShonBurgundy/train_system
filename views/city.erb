@@ -1,0 +1,31 @@
+<h2>City of <%= @city.name %></h2>
+
+<h3>View the trains that service this city below!</h3>
+
+<% if @city.trains %>
+<ul>
+  <% @city.trains.each do |train| %>
+    <li><a href="/train/<%= @train.id %>"><%= train.name %></a>
+  <% end %>
+</ul>
+<% else %>
+  <p>No trains visit this city, better start walking.</p>
+<% end %>
+
+<h3>Edit City Name:</h3>
+
+  <form action="/city/<%= @city.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+
+    <input id="city_name" name="city_name" type="text" placeholder="Edit City Name">
+    <button type="submit" class="btn btn-danger">Edit</button>
+  </form>
+
+  <br>
+  <form action="/city/<%= @city.id %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+
+    <button type="submit" class="btn btn-danger">Delete City</button>
+  </form>
+
+<br><a href="/">Return to homepage.</a>

@@ -68,4 +68,17 @@ describe '#Train' do
     end
   end
     
+  describe('#update') do
+    it("adds a city to a train") do
+      train = Train.new({:name => "A", :id => nil})
+      train.save()
+      city = City.new({:name => "Portland", :id => nil})
+      city.save()
+      train.update({:city_name => "Portland"})
+      expect(train.cities).to(eq([city]))
+    end
+  end
+
+
+
 end
