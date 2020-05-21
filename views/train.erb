@@ -2,7 +2,7 @@
 
 <h3>Cities Serviced</h3>
 
-<% if @train.cities %>
+<% if @train.cities.any? %>
 <ul>
   <% @train.cities.each do |city| %>
     <li><a href="/trains/<%= @train.id %>/cities/<%= city.id %>"><%= city.name %></a></li>
@@ -23,6 +23,12 @@
       </form>
 
     <h3>Add a city to this train</h3>
+    <form action="/trains/<%= @train.id %>" method="post">
+        <input name="_method" type="hidden" value="patch">
+
+        <input id="city_name" name="city_name" type="text" placeholder="City Name Here">
+        <button type="submit" class="btn btn-danger">Add City</button>
+      </form>
  
     <form action="/trains/<%= @train.id %>" method="post">
       <input name="_method" type="hidden" value="delete">

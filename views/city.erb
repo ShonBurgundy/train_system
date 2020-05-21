@@ -2,7 +2,7 @@
 
 <h3>View the trains that service this city below!</h3>
 
-<% if @city.trains %>
+<% if @city.trains.any? %>
 <ul>
   <% @city.trains.each do |train| %>
     <li><a href="/train/<%= @train.id %>"><%= train.name %></a>

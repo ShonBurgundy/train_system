@@ -52,14 +52,6 @@ class Train
     end
   end
 
-  # def update_cities(city)
-  #   city_name = city
-  #   city = DB.exec("SELECT * FROM cities WHERE lower(name)='#{city_name.downcase}';").first
-  #   if city != nil
-  #     DB.exec("INSERT INTO stops (city_id, train_id) VALUES (#{city['id'].to_i}, #{@id});")
-  #   end
-  # end
-
   def cities
     cities = []
     results = DB.exec("SELECT city_id FROM stops WHERE train_id = #{@id};")
